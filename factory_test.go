@@ -15,6 +15,7 @@ func (s *FactorySuite) TestSetDefaultsBasic(c *C) {
 
 func (s *FactorySuite) assertTypes(c *C, foo *ExampleBasic) {
 	c.Assert(foo.String, HasLen, 32)
+	c.Assert(foo.Bool, FitsTypeOf, true)
 	c.Assert(foo.Integer, Not(Equals), 0)
 	c.Assert(foo.Integer8, Not(Equals), int8(0))
 	c.Assert(foo.Integer16, Not(Equals), int16(0))

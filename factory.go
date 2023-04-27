@@ -32,11 +32,7 @@ func newFactoryFiller() *Filler {
 	funcs := make(map[reflect.Kind]FillerFunc, 0)
 
 	funcs[reflect.Bool] = func(field *FieldData) {
-		if rand.Intn(1) == 1 {
-			field.Value.SetBool(true)
-		} else {
-			field.Value.SetBool(false)
-		}
+		field.Value.SetBool(true)
 	}
 
 	funcs[reflect.Int] = func(field *FieldData) {

@@ -94,6 +94,7 @@ func newDefaultFiller() *Filler {
 
 	types := make(map[TypeHash]FillerFunc, 1)
 	types["time.Duration"] = func(field *FieldData) {
+
 		d, err := time.ParseDuration(field.TagValue)
 		if err != nil {
 			v, _ := strconv.ParseInt(field.TagValue, 10, 64)
@@ -168,13 +169,12 @@ func parseDateTimeString(data string) string {
 				case "date":
 					str := time.Now().AddDate(values[0], values[1], values[2]).Format("2006-01-02")
 					data = strings.Replace(data, match[0], str, -1)
-					break
+
 				case "time":
 					str := time.Now().Add((time.Duration(values[0]) * time.Hour) +
 						(time.Duration(values[1]) * time.Minute) +
 						(time.Duration(values[2]) * time.Second)).Format("15:04:05")
 					data = strings.Replace(data, match[0], str, -1)
-					break
 				}
 			}
 		}
